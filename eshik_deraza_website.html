@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DoorWin — Eshik va Derazalar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--gold:#C9A84C;
+--gold-light:#E8C96A;
+--gold-dark:#8B6914;
+--black:#0A0A0A;
+--black2:#141414;
+--black3:#1E1E1E;
+--white:#FAFAF8;
+--gray:#888;
+--gray-light:#CCCCCC;
+--border:rgba(201,168,76,0.25)
+}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);z-index:100}
+.logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:var(--gold);letter-spacing:1px}
+.logo span{color:var(--white)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13px;color:var(--gray-light);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);font-size:13px;font-weight:600;padding:9px 20px;border-radius:6px;border:none;cursor:pointer;letter-spacing:0.5px;transition:background 0.2s}
+.nav-cta:hover{background:var(--gold-light)}
+
+.hero{padding:80px 40px 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;min-height:80vh;max-width:1200px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.12);border:0.5px solid var(--border);color:var(--gold);font-size:12px;padding:6px 14px;border-radius:20px;margin-bottom:24px}
+.hero h1{font-family:'Playfair Display',serif;font-size:56px;font-weight:800;line-height:1.1;margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{font-size:16px;color:var(--gray-light);line-height:1.7;margin-bottom:36px;max-width:460px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--black);font-weight:600;font-size:14px;padding:13px 28px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.2s;text-decoration:none}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--white);font-weight:500;font-size:14px;padding:13px 28px;border-radius:8px;border:0.5px solid rgba(255,255,255,0.2);cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.2s;text-decoration:none}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.door-showcase{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.door-card{background:var(--black2);border:0.5px solid var(--border);border-radius:12px;padding:20px;text-align:center;transition:all 0.3s;cursor:pointer}
+.door-card:hover{border-color:var(--gold);transform:translateY(-4px);background:var(--black3)}
+.door-icon{font-size:48px;margin-bottom:12px}
+.door-card h4{font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px}
+.door-card p{font-size:12px;color:var(--gray)}
+.door-card.featured{grid-column:span 2;background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.03));border-color:rgba(201,168,76,0.4)}
+
+.stats{background:var(--black2);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:40px;display:grid;grid-template-columns:repeat(4,1fr);max-width:1200px;margin:0 auto}
+.stat-item{text-align:center;padding:20px}
+.stat-item:not(:last-child){border-right:0.5px solid var(--border)}
+.stat-num{font-family:'Playfair Display',serif;font-size:38px;font-weight:800;color:var(--gold)}
+.stat-label{font-size:13px;color:var(--gray);margin-top:4px}
+
+.section{padding:80px 40px;max-width:1200px;margin:0 auto}
+.section-tag{font-size:12px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:'Playfair Display',serif;font-size:40px;font-weight:800;margin-bottom:48px;line-height:1.2}
+
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.product-card{background:var(--black2);border:0.5px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all 0.3s}
+.product-card:hover{border-color:var(--gold);transform:translateY(-6px)}
+.product-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:80px;background:var(--black3);position:relative}
+.product-tag{position:absolute;top:12px;right:12px;background:var(--gold);color:var(--black);font-size:11px;font-weight:600;padding:4px 10px;border-radius:4px}
+.product-body{padding:20px}
+.product-name{font-size:16px;font-weight:600;margin-bottom:6px}
+.product-desc{font-size:13px;color:var(--gray);line-height:1.5;margin-bottom:16px}
+.product-price{font-size:14px;color:var(--gold);font-weight:600}
+.product-cta{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:0.5px solid rgba(255,255,255,0.07)}
+
+.features{background:var(--black2);padding:80px 40px}
+.features-inner{max-width:1200px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.feature-item{padding:28px;border:0.5px solid var(--border);border-radius:12px;background:var(--black);transition:border-color 0.2s}
+.feature-item:hover{border-color:var(--gold)}
+.feature-icon{width:44px;height:44px;background:rgba(201,168,76,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gold);margin-bottom:16px}
+.feature-title{font-size:15px;font-weight:600;margin-bottom:8px}
+.feature-desc{font-size:13px;color:var(--gray);line-height:1.6}
+
+.contact-section{padding:80px 40px;max-width:900px;margin:0 auto;text-align:center}
+.contact-card{background:var(--black2);border:0.5px solid var(--border);border-radius:20px;padding:56px 48px}
+.contact-card h2{font-family:'Playfair Display',serif;font-size:38px;font-weight:800;margin-bottom:16px}
+.contact-card p{font-size:15px;color:var(--gray-light);margin-bottom:40px;line-height:1.7}
+.contact-form{display:grid;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:8px;text-align:left}
+.form-group label{font-size:13px;color:var(--gray-light)}
+.form-group input,.form-group select,.form-group textarea{background:var(--black);border:0.5px solid rgba(255,255,255,0.15);border-radius:8px;padding:12px 14px;color:var(--white);font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-group select{appearance:none;cursor:pointer}
+.form-group select option{background:var(--black2)}
+.form-group textarea{resize:vertical;min-height:90px}
+.submit-btn{background:var(--gold);color:var(--black);font-weight:700;font-size:15px;padding:15px 32px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;width:100%;margin-top:8px}
+.submit-btn:hover{background:var(--gold-light)}
+.success-msg{display:none;background:rgba(201,168,76,0.1);border:0.5px solid var(--gold);border-radius:10px;padding:20px;color:var(--gold);font-size:14px;text-align:center;margin-top:16px}
+
+footer{background:var(--black2);border-top:0.5px solid var(--border);padding:40px;text-align:center}
+.footer-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--gold);margin-bottom:12px}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:20px}
+.footer-links a{font-size:13px;color:var(--gray);text-decoration:none}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-size:12px;color:rgba(136,136,136,0.6)}
+
+.tg-float{position:fixed;bottom:28px;right:28px;background:var(--gold);color:var(--black);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;box-shadow:0 4px 24px rgba(201,168,76,0.35);transition:all 0.2s;text-decoration:none;z-index:200}
+.tg-float:hover{transform:scale(1.1);background:var(--gold-light)}
+
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:40px 20px;gap:40px}
+  .hero h1{font-size:38px}
+  .stats{grid-template-columns:repeat(2,1fr);padding:20px}
+  .products-grid{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr}
+  .section{padding:60px 20px}
+  .contact-card{padding:32px 20px}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Door<span>Win</span></div>
+  <div class="nav-links">
+    <a href="#mahsulotlar">Mahsulotlar</a>
+    <a href="#afzalliklar">Afzalliklar</a>
+    <a href="#narxlar">Narxlar</a>
+    <a href="#aloqa">Aloqa</a>
+  </div>
+  <button class="nav-cta" onclick="scrollTo({top:document.getElementById('aloqa').offsetTop,behavior:'smooth'})">Narx so'rash</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="ti ti-star-filled" aria-hidden="true"></i>
+      O'zbekistonda #1 yetkazib beruvchi
+    </div>
+    <h1>Sifatli <em>Eshik</em> va <em>Derazalar</em></h1>
+    <p>Uyingiz uchun eng yaxshi eshik va derazalarni tanlang. Metal, yog'och, plastik — har xil material, har xil narx. O'rnatish va kafolat biz tomonimizdan.</p>
+    <div class="hero-btns">
+      <a href="#mahsulotlar" class="btn-primary">
+        <i class="ti ti-layout-grid" aria-hidden="true"></i>
+        Mahsulotlarni ko'rish
+      </a>
+      <a href="https://t.me/asrorbek_726" target="_blank" class="btn-secondary">
+        <i class="ti ti-brand-telegram" aria-hidden="true"></i>
+        Telegram orqali so'rash
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="door-showcase">
+      <div class="door-card featured">
+        <div class="door-icon">🚪</div>
+        <h4>Kirish eshiklari</h4>
+        <p>Mahkam, xavfsiz, chiroyli dizayn</p>
+      </div>
+      <div class="door-card">
+        <div class="door-icon">🪟</div>
+        <h4>PVC derazalar</h4>
+        <p>Issiqni saqlaydi</p>
+      </div>
+      <div class="door-card">
+        <div class="door-icon">🔲</div>
+        <h4>Shisha fasad</h4>
+        <p>Zamonaviy ko'rinish</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="background:var(--black2);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border)">
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">5000+</div>
+    <div class="stat-label">Mamnun mijozlar</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Yillik tajriba</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3 yil</div>
+    <div class="stat-label">Kafolat muddati</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2 kun</div>
+    <div class="stat-label">O'rnatish vaqti</div>
+  </div>
+</div>
+</div>
+
+<section class="section" id="mahsulotlar">
+  <div class="section-tag">Katalog</div>
+  <div class="section-title">Bizning mahsulotlar</div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">🚪<span class="product-tag">Ommabop</span></div>
+      <div class="product-body">
+        <div class="product-name">Metal kirish eshigi</div>
+        <div class="product-desc">Italyan qulfli, 3 qatlam bo'yoq, zanglamaydigan</div>
+        <div class="product-cta">
+          <span class="product-price">1 200 000 so'mdan</span>
+          <button onclick="askAbout('Metal kirish eshigi')" style="background:rgba(201,168,76,0.1);border:0.5px solid var(--border);color:var(--gold);padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer">So'rash ↗</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🪟<span class="product-tag">Yangi</span></div>
+      <div class="product-body">
+        <div class="product-name">PVC deraza (2 qanotli)</div>
+        <div class="product-desc">German profil, 2 kamerali steklopaket, qo'shimcha izolyatsiya</div>
+        <div class="product-cta">
+          <span class="product-price">850 000 so'mdan</span>
+          <button onclick="askAbout('PVC deraza 2 qanotli')" style="background:rgba(201,168,76,0.1);border:0.5px solid var(--border);color:var(--gold);padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer">So'rash ↗</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🚪</div>
+      <div class="product-body">
+        <div class="product-name">Yog'och eshik (MDF)</div>
+        <div class="product-desc">Natural görünüş, ichki xona uchun, turli rang variantlari</div>
+        <div class="product-cta">
+          <span class="product-price">650 000 so'mdan</span>
+          <button onclick="askAbout('Yog\'och MDF eshik')" style="background:rgba(201,168,76,0.1);border:0.5px solid var(--border);color:var(--gold);padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer">So'rash ↗</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🔲</div>
+      <div class="product-body">
+        <div class="product-name">Alyuminiy balkon deraza</div>
+        <div class="product-desc">Engil, mustahkam, balkonga ideal, panoramik variant bor</div>
+        <div class="product-cta">
+          <span class="product-price">1 100 000 so'mdan</span>
+          <button onclick="askAbout('Alyuminiy balkon deraza')" style="background:rgba(201,168,76,0.1);border:0.5px solid var(--border);color:var(--gold);padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer">So'rash ↗</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🚪<span class="product-tag">Premium</span></div>
+      <div class="product-body">
+        <div class="product-name">Shisha kirish eshigi</div>
+        <div class="product-desc">Temper shisha, brend tutqich, ofis va korxonalar uchun</div>
+        <div class="product-cta">
+          <span class="product-price">2 500 000 so'mdan</span>
+          <button onclick="askAbout('Shisha kirish eshigi')" style="background:rgba(201,168,76,0.1);border:0.5px solid var(--border);color:var(--gold);padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer">So'rash ↗</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🪟</div>
+      <div class="product-body">
+        <div class="product-name">3 kamerali PVC deraza</div>
+        <div class="product-desc">Maksimal issiqlik saqlash, qish uchun ideal variant</div>
+        <div class="product-cta">
+          <span class="product-price">1 350 000 so'mdan</span>
+          <button onclick="askAbout('3 kamerali PVC deraza')" style="background:rgba(201,168,76,0.1);border:0.5px solid var(--border);color:var(--gold);padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer">So'rash ↗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="afzalliklar">
+  <div class="features-inner">
+    <div class="section-tag">Nima uchun biz?</div>
+    <div class="section-title">Bizning afzalliklarimiz</div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+        <div class="feature-title">3 yil kafolat</div>
+        <div class="feature-desc">Har bir mahsulotga 3 yillik kafolat beramiz. Nosozlik bo'lsa — bepul ta'mirlash.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="ti ti-tool" aria-hidden="true"></i></div>
+        <div class="feature-title">Professional o'rnatish</div>
+        <div class="feature-desc">Tajribali ustalarimiz 1–2 kunda to'liq o'rnatib beradi. O'rnatish narxi alohida.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="ti ti-truck-delivery" aria-hidden="true"></i></div>
+        <div class="feature-title">Toshkent bo'ylab yetkazish</div>
+        <div class="feature-desc">Buyurtma berganingizda yetkazib beramiz. Toshkent shahri bo'ylab bepul.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="ti ti-ruler-measure" aria-hidden="true"></i></div>
+        <div class="feature-title">O'lchov olish</div>
+        <div class="feature-desc">Mutaxassisimiz uyingizga kelib aniq o'lchovlarni oladi — bepul.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="ti ti-brand-telegram" aria-hidden="true"></i></div>
+        <div class="feature-title">Telegram orqali buyurtma</div>
+        <div class="feature-desc">Formani to'ldiring — xabar Telegram botimizga keladi. Tez va qulay.</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="ti ti-credit-card" aria-hidden="true"></i></div>
+        <div class="feature-title">Qulay to'lov</div>
+        <div class="feature-desc">Naqd, karta, nasiya — istalgan to'lov usuli. 0% nasiya, 6 oyga.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="aloqa">
+  <div class="contact-card">
+    <div style="width:56px;height:56px;background:rgba(201,168,76,0.12);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 20px;color:var(--gold)"><i class="ti ti-brand-telegram" aria-hidden="true"></i></div>
+    <h2>Buyurtma bering</h2>
+    <p>Formani to'ldiring — xabaringiz Telegram botimizga keladi va <strong style="color:var(--gold)">30 daqiqa ichida</strong> sizga aloqaga chiqamiz.</p>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ismingiz</label>
+          <input type="text" id="name" placeholder="Sardor Rahimov">
+        </div>
+        <div class="form-group">
+          <label>Telefon raqamingiz</label>
+          <input type="tel" id="phone" placeholder="+998 90 123 45 67">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Mahsulot turi</label>
+          <select id="product">
+            <option value="">Tanlang...</option>
+            <option>Metal kirish eshigi</option>
+            <option>PVC deraza (2 qanotli)</option>
+            <option>Yog'och eshik (MDF)</option>
+            <option>Alyuminiy balkon deraza</option>
+            <option>Shisha kirish eshigi</option>
+            <option>3 kamerali PVC deraza</option>
+            <option>Boshqa</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Soni</label>
+          <input type="number" id="qty" placeholder="1" min="1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Qo'shimcha ma'lumot</label>
+        <textarea id="note" placeholder="O'lchovlar, rang, qo'shimcha talablar..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="sendToTelegram()">
+        <i class="ti ti-brand-telegram" aria-hidden="true"></i>
+        Telegram orqali yuborish
+      </button>
+      <div class="success-msg" id="success-msg">
+        ✅ Buyurtmangiz yuborildi! 30 daqiqa ichida siz bilan bog'lanamiz.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">DoorWin</div>
+  <div class="footer-links">
+    <a href="#">Mahsulotlar</a>
+    <a href="#">Afzalliklar</a>
+    <a href="#">Narxlar</a>
+    <a href="#">Aloqa</a>
+  </div>
+  <div class="footer-copy">© 2025 DoorWin. Barcha huquqlar himoyalangan.</div>
+</footer>
+
+<a href="https://t.me/asrorbek_726" target="_blank" class="tg-float" title="Telegram orqali so'rash">
+  <i class="ti ti-brand-telegram" aria-hidden="true"></i>
+</a>
+
+<script>
+const BOT_TOKEN = '8885801633:AAHHQF_TjA4n6RRqkKRVwE-QXxfUtasinJM';
+const CHAT_ID = '6943894774';
+
+function askAbout(product) {
+  document.getElementById('product').value = product;
+  document.getElementById('aloqa').scrollIntoView({behavior:'smooth'});
+}
+
+async function sendToTelegram() {
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const product = document.getElementById('product').value;
+  const qty = document.getElementById('qty').value || '1';
+  const note = document.getElementById('note').value.trim();
+
+  if(!name || !phone || !product) {
+    alert('Iltimos, ism, telefon va mahsulotni kiriting.');
+    return;
+  }
+
+  const msg = `🚪 *Yangi buyurtma — DoorWin*\n\n👤 *Ism:* ${name}\n📞 *Telefon:* ${phone}\n📦 *Mahsulot:* ${product}\n🔢 *Soni:* ${qty}\n💬 *Izoh:* ${note || 'Yo\'q'}\n\n🕐 Vaqt: ${new Date().toLocaleString('uz-UZ')}`;
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown'})
+    });
+    const data = await res.json();
+    if(data.ok) {
+      document.getElementById('success-msg').style.display = 'block';
+      document.getElementById('name').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('product').value = '';
+      document.getElementById('qty').value = '';
+      document.getElementById('note').value = '';
+    } else {
+      alert('Xatolik yuz berdi. Iltimos, Telegram orqali to\'g\'ridan-to\'g\'ri yozing.');
+    }
+  } catch(e) {
+    alert('Internet bilan muammo. Iltimos, qayta urinib ko\'ring.');
+  }
+}
+</script>
+</body>
+</html>
